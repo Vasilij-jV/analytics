@@ -5,7 +5,7 @@ import datetime
 import logging
 
 # Создание графика по ценам закрытия и скользящей средней цены закрытия
-def create_and_save_plot(data, ticker, period, filename=None):
+def create_and_save_plot(data, ticker, period, style='classic', filename=None):
     # Улучшенное управление временными периодами. Форматирование строки "period" для отображения в названии файла
     if len(period) > 3:
         name_file_with_spaces = period.split(',')
@@ -23,6 +23,7 @@ def create_and_save_plot(data, ticker, period, filename=None):
             dates = data.index.to_numpy()
             plt.plot(dates, data['Close'].values, label='Close Price')
             plt.plot(dates, data['Moving_Average'].values, label='Close Moving Average')
+            plt.style.use(style)  # применяем выбранный стиль
         else:
             print("Информация о дате отсутствует или не имеет распознаваемого формата.")
             logging.info(f'Информация о дате отсутствует или не имеет распознаваемого формата.')
@@ -32,6 +33,7 @@ def create_and_save_plot(data, ticker, period, filename=None):
             data['Date'] = pd.to_datetime(data['Date'])
         plt.plot(data['Date'], data['Close'], label='Close Price')
         plt.plot(data['Date'], data['Moving_Average'], label='Close Moving Average')
+        plt.style.use(style)  # применяем выбранный стиль
 
     plt.title(f"{ticker} Цена акций с течением времени")
     plt.xlabel("Дата")

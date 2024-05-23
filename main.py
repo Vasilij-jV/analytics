@@ -62,7 +62,7 @@ def main():
 
 
     # Построение данных
-    dplt.create_and_save_plot(stock_data, ticker, period)
+    dplt.create_and_save_plot(stock_data, ticker, period, style='dark_background')
 
 
 if __name__ == "__main__":
