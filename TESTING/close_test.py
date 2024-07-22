@@ -1,10 +1,11 @@
 import unittest
-from data_download import fetch_stock_data, add_moving_average, notify_if_strong_fluctuations
+from data_download import fetch_stock_data, add_moving_average, notify_if_strong_fluctuations, statistical_indicator
 from data_plotting import plot_technical_indicators, create_and_save_plot
 import pandas as pd
 import os
 import io
 import sys
+
 
 class Close(unittest.TestCase):
 
@@ -47,6 +48,13 @@ class Close(unittest.TestCase):
         # Проверяем, что строка "Hello, world!" была выведена на консоль
         self.assertIn(f'Порог колебания цены - ({difference_between_min_max}) превышает допустимое значение -'
                       f' ({self.threshold})\n', output)
+
+    #  Стандартное отклонение цены закрытия
+    def test_statistical_indicator(self):
+        stock_data = fetch_stock_data(self.ticker, self.period)
+        si = statistical_indicator(stock_data, self.ticker)
+        self.assertIsInstance(si, float, f"Ожидалось, что результат будет float, а получено {type(si)}")
+
 
 if __name__ == '__main__':
     unittest.main()

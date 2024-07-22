@@ -4,6 +4,7 @@ import numpy as np
 import datetime
 import logging
 
+
 # Создание графика по ценам закрытия и скользящей средней цены закрытия
 def create_and_save_plot(data, ticker, period, style='classic', filename=None):
     # Улучшенное управление временными периодами. Форматирование строки "period" для отображения в названии файла
@@ -75,4 +76,6 @@ def plot_technical_indicators(data, ticker, indicator, filename=None):
     plt.savefig(filename)
     print(f"{indicator} график сохранён, как {filename}")
     logging.info(f'{indicator} график сохранён, как {filename}')
+
+
 

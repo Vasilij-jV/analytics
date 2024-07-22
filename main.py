@@ -13,12 +13,10 @@ def main():
         "Общие периоды времени для данных о запасах включают: 1д, 5д, 1мес, 3мес, 6мес, 1г, 2г, 5г, 10л, "
         "с начала года, макс.")
 
-
     enter_ticker = input("Введите тикер акции (например, «AAPL» для Apple Inc):»")
     enter_period = input("Введите период для данных (например: '1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y',"
                          " '10y', 'ytd',"
                          " 'max', 'yyyy-mm-dd, yyyy-mm-dd'): ")
-
 
     # Получение данных для формирования объекта с данными о запасах
     ticker = enter_ticker
@@ -30,10 +28,8 @@ def main():
     # Добавляет колонку со скользящим средним к данным и переопределяет объект "stock_data"
     stock_data = dd.add_moving_average(stock_data)
 
-
     # Вывод средней цены из колонки "Close" за период
     dd.calculate_and_display_average_price(stock_data)
-
 
     # Уведомление о сильных колебаниях
     threshold = 5
@@ -46,11 +42,9 @@ def main():
     #                                                   'utf-8')]
     #                     )
 
-
     # Экспортирует объект DanaFrame в файл
     filename = 'save_dataframe.csv'
     dplt.export_data_to_csv(stock_data, filename)
-
 
     #  Добавление дополнительных технических индикаторов
     data_rsi = dd.calculate_rsi_from_yfinance(ticker, period)
@@ -60,6 +54,8 @@ def main():
     dplt.plot_technical_indicators(data_rsi, ticker, 'RSI')
     dplt.plot_technical_indicators(data_macd, ticker, 'MACD')
 
+    #  Стандартное отклонение цены закрытия
+    dd.statistical_indicator(stock_data, ticker)
 
     # Построение данных
     dplt.create_and_save_plot(stock_data, ticker, period, style='dark_background')

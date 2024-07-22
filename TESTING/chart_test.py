@@ -4,6 +4,7 @@ from data_download import (calculate_rsi_from_yfinance, calculate_macd_from_yfin
 from data_plotting import plot_technical_indicators, create_and_save_plot
 import pandas as pd
 import os
+import logging
 
 
 class TestTechnicalIndicators(unittest.TestCase):
@@ -41,7 +42,6 @@ class TestTechnicalIndicators(unittest.TestCase):
         stock_data = add_moving_average(stock_data)
         create_and_save_plot(stock_data, self.ticker, self.period)
         self.assertTrue(os.path.exists(f"CHARTS/{self.ticker}_{self.period}_stock_price_chart.png"))
-
 
 
 if __name__ == '__main__':

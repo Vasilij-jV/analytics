@@ -2,11 +2,12 @@ import yfinance as yf
 from pprint import pprint
 import logging
 
-
 logging.basicConfig(level=logging.INFO,
-                        handlers=[logging.FileHandler('LOGGING/logging_download_plotting.log', 'w',
-                                                      'utf-8')]
-                        )
+                    handlers=[logging.FileHandler('LOGGING/logging_download_plotting.log', 'w',
+                                                  'utf-8')]
+                    )
+
+
 # Получение исторических данных об акциях для указанного тикера и временного периода
 def fetch_stock_data(ticker, period):
     stock = yf.Ticker(ticker)
@@ -21,8 +22,6 @@ def fetch_stock_data(ticker, period):
         data = stock.history(period=period)
         logging.info(f'Временной период с предопределённым интервалом {type(data)}')
         return data
-
-
 
 
 # Добавление в DataFrame колонки со скользящим средним, рассчитанным на основе цен закрытия
@@ -106,3 +105,14 @@ def calculate_macd_from_yfinance(ticker, period, short_window=12, long_window=26
     data['Signal Line'] = signal_line
     logging.info(f'Колонка "MACD" и "Signal Line": {type(data)} {type(data)}')
     return data
+
+
+#  Стандартное отклонение цены закрытия
+def statistical_indicator(data, ticker_symbol):
+    # Вычисляем стандартное отклонение цены закрытия
+    std_dev = data['Close'].std()
+
+    # Выводим стандартное отклонение
+    print(f"Стандартное отклонение цены закрытия {ticker_symbol}: {std_dev}")
+    logging.info(f'Стандартное отклонение цены закрытия {ticker_symbol}: {std_dev}')
+    return std_dev

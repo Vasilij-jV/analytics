@@ -1,0 +1,11 @@
+INFO:root:Объект "Ticker" yfinance.Ticker object <AAPL>
+INFO:root:Временной период с предопределённым интервалом <class 'pandas.core.frame.DataFrame'>
+INFO:root:В DataFrame добавлено свойство "Moving_Average" <class 'pandas.core.frame.DataFrame'>
+INFO:root:Объект "Ticker" yfinance.Ticker object <AAPL>
+INFO:root:Временной период с предопределённым интервалом <class 'pandas.core.frame.DataFrame'>
+INFO:root:Значение колебаний: 12.818299227830787
+INFO:root:Объект "Ticker" yfinance.Ticker object <AAPL>
+INFO:root:Временной период с предопределённым интервалом <class 'pandas.core.frame.DataFrame'>
+INFO:root:Объект "Ticker" yfinance.Ticker object <AAPL>
+INFO:root:Временной период с предопределённым интервалом <class 'pandas.core.frame.DataFrame'>
+INFO:root:Стандартное отклонение цены закрытия AAPL: 8.407786413372154
