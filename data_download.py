@@ -1,6 +1,7 @@
 import yfinance as yf
 from pprint import pprint
 import logging
+import plotly.graph_objs as go
 
 logging.basicConfig(level=logging.INFO,
                     handlers=[logging.FileHandler('LOGGING/logging_download_plotting.log', 'w',
@@ -116,3 +117,19 @@ def statistical_indicator(data, ticker_symbol):
     print(f"Стандартное отклонение цены закрытия {ticker_symbol}: {std_dev}")
     logging.info(f'Стандартное отклонение цены закрытия {ticker_symbol}: {std_dev}')
     return std_dev
+
+
+#  Интерактивный график
+def interactive_chart(stock_data, ticker):
+    # Создание графика с использованием Plotly
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatter(x=stock_data.index, y=stock_data['Close'], mode='lines', name='Цена закрытия'))
+
+    fig.update_layout(title=f'Исторические цены акции {ticker}',
+                      xaxis_title='Дата',
+                      yaxis_title='Цена закрытия ($)')
+
+    fig.show()
+    average_close = stock_data['Close'].mean()
+    print(f'Среднее значение колонки "Close": {average_close}\n')

@@ -57,6 +57,9 @@ def main():
     #  Стандартное отклонение цены закрытия
     dd.statistical_indicator(stock_data, ticker)
 
+    #  Интерактивный график
+    dd.interactive_chart(stock_data, ticker)
+
     # Построение данных
     dplt.create_and_save_plot(stock_data, ticker, period, style='dark_background')
 
